@@ -137,7 +137,7 @@ public class XDTCards: CanTokenize, CanAuthenticate {
             fromViewController: fromViewController,
             tokenId: tokenId,
             amount: amount,
-            currency: nil,
+            currency: currency,
             onBehalfOf: onBehalfOf,
             customer: customer,
             cardCvn: nil,
@@ -159,10 +159,10 @@ public class XDTCards: CanTokenize, CanAuthenticate {
             fromViewController: fromViewController,
             tokenId: tokenId,
             amount: amount,
-            currency: nil,
+            currency: currency,
             onBehalfOf: onBehalfOf,
             customer: customer,
-            cardCvn: nil,
+            cardCvn: cardCvn,
             cardData: nil,
             completion: completion
         );
@@ -190,7 +190,7 @@ public class XDTCards: CanTokenize, CanAuthenticate {
             currency: currency,
             onBehalfOf: onBehalfOf,
             cardCvn: cardCvn,
-            cardData:cardData,
+            cardData: cardData,
             completion: completion
         )
     }
@@ -213,8 +213,8 @@ public class XDTCards: CanTokenize, CanAuthenticate {
             requestBody["card_cvn"] = cardCvn
         }
         
-        if let cardData {
-            requestBody["card_data"] = cardData
+        if let cardData, !cardData.isEmpty() {
+            requestBody["card_data"] = cardData.toJsonObject()
         }
         
         var extraHeaders: [String: String] = [:]
